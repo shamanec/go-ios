@@ -195,7 +195,11 @@ func (a ControlInterface) deviceAllAuditCaseIDs() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	return convertToStringList(response.Payload), nil
+	if response.HasPayload() {
+		return convertToStringList(response.Payload), nil
+	} else {
+		return []string{}, nil
+	}
 }
 
 func (a ControlInterface) deviceAccessibilitySettings() (map[string]interface{}, error) {
