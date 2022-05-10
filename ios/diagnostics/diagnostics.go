@@ -34,7 +34,7 @@ func Reboot(device ios.DeviceEntry) error {
 }
 
 func (diagnosticsConn *Connection) Reboot() error {
-	req := rebootRequest{Request: "Restart", WaitForDisconnect: true, DisplayFail: true, DisplayPass: true}
+	req := rebootRequest{Request: "Restart"}
 	reader := diagnosticsConn.deviceConn.Reader()
 	bytes, err := diagnosticsConn.plistCodec.Encode(req)
 	if err != nil {
@@ -52,6 +52,7 @@ func (diagnosticsConn *Connection) Reboot() error {
 	if err != nil {
 		return err
 	}
+
 	if val, ok := plist["Status"]; ok {
 		if statusString, yes := val.(string); yes {
 			if statusString == "Success" {

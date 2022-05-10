@@ -18,10 +18,7 @@ func diagnosticsfromBytes(plistBytes []byte) allDiagnosticsResponse {
 }
 
 type rebootRequest struct {
-	Request           string
-	WaitForDisconnect bool
-	DisplayPass       bool
-	DisplayFail       bool
+	Request string
 }
 
 type allDiagnosticsResponse struct {
